@@ -7,6 +7,8 @@
 # Created by https://www.gitignore.io/api/rails
 # Edit at https://www.gitignore.io/?templates=rails
 
+config/master.key
+
 *.rbc
 capybara-*.html
 .rspec
