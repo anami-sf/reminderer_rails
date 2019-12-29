@@ -1,5 +1,5 @@
 # Do I need this?
-require 'omniauth-google-oauth2'
+# require 'omniauth-google-oauth2'
 
 class SessionsController < ApplicationController
 
