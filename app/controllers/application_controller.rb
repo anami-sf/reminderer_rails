@@ -6,11 +6,9 @@ class ApplicationController < ActionController::Base
 
     def current_user
         User.find_by(id: session[:current_user_id])  
-        reset_session
     end
 
     def logged_in  
-        # Missing arg here
         !current_user.nil?  
     end
 
