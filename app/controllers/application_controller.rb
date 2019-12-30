@@ -4,11 +4,13 @@ class ApplicationController < ActionController::Base
     helper_method :logged_in
     before_action :authorized
 
-    def current_user    
-        User.find_by(id: session[:user_id])  
+    def current_user
+        User.find_by(id: session[:current_user_id])  
+        reset_session
     end
 
     def logged_in  
+        # Missing arg here
         !current_user.nil?  
     end
 

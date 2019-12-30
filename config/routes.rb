@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
   
-  root 'welcome#index' 
+  #get 'dashboard' => 'dashboard#index'
+  get 'dashboard/index'
+  get 'welcome/index'
 
-  #auth/google_oauth2
-  
-  # Routes for Google authentication  => /auth/google_oauth2
-  
+  # Twilio Route
+  post 'notifications/notify' => 'notifications#notify'
+
+  # Google authentication  => /auth/google_oauth2
   get 'auth/:provider/callback' => 'sessions#googleAuth'
   get 'auth/failure' => redirect('/')
 
-  get 'welcome/index'
-  post 'notifications/notify' => 'notifications#notify'
+  root 'welcome#index' 
 
 end

@@ -1,5 +1,3 @@
-# Do I need this?
-# require 'omniauth-google-oauth2'
 
 class SessionsController < ApplicationController
 
@@ -9,7 +7,9 @@ class SessionsController < ApplicationController
         # Get access tokens from the google server
         access_token = request.env["omniauth.auth"]
         user = User.from_omniauth(access_token)
-        # log_in(user)
+        puts('*******************user: ', user.id)
+        session[:current_user_id] = user.id
+        puts('*******************1-session[user]: ', session[:current_user_id])
         # Access_token is used to authenticate request made from the rails application to the google server
         user.google_token = access_token.credentials.token
         # Refresh_token to request new access_token
@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
         refresh_token = access_token.credentials.refresh_token
         user.google_refresh_token = refresh_token if refresh_token.present?
         user.save
+        puts('*******************2-session[user]: ', session[:current_user_id]) 
         redirect_to root_path
   end
 end
