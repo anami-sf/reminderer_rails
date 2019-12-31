@@ -7,6 +7,7 @@ ruby '2.6.5'
 gem 'omniauth-google-oauth2'
 # Manages token for front-end authentication
 gem 'devise_token_auth'
+gem 'devise'
 # Cors
 gem 'rack-cors'
 # Twilio

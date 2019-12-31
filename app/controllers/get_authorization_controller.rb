@@ -7,8 +7,21 @@ class AuthorizationController < ApplicationController
    url = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{params["id_token"]}"                  
    response = HTTParty.get(url)                   
    @user = User.create_user_for_google(response.parsed_response)      
-   tokens = @user.create_new_auth_token                      
+   tokens = @user.create_new_auth_token  
+   set_headers(tokens)                    
    @user.save
-   render json:@user
+   render json: { status: 'Signed in successfully with google'}
+   #render json:@user
  end
+
+
+private                                            
+def set_headers(tokens)
+  headers['access-token'] = (tokens['access-token']).to_s
+  headers['client'] =  (tokens['client']).to_s
+  headers['expiry'] =  (tokens['expiry']).to_s
+  headers['uid'] =@user.uid             
+  headers['token-type'] = (tokens['token-type']).to_s                  
+ end                                          
+end
 end

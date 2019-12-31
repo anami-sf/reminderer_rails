@@ -1,4 +1,4 @@
-#OmniAuth.config.logger = Rails.logger
+OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do
     id = Rails.application.credentials.google_client_id
