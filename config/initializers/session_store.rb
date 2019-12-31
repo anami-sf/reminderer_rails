@@ -1,4 +1,6 @@
 #Rails.application.config.session_store :cookie_store, SameSite: 'None'
+Rails.application.config.session_store :cookie_store, same_site: :lax
+#:secure
 
 
 # Rails.application.config.action_dispatch.default_headers = {
