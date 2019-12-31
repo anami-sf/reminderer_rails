@@ -9,19 +9,6 @@ class SessionsController < ApplicationController
         puts('*******************request.env: ', access_token)
         user = User.from_omniauth(access_token)
         puts('*******************user: ', user.id)
-
-        if user 
-          render json: {
-            logged_in: true,
-            user: user
-          }
-        else
-          render json: { 
-            status: 401,
-            errors: ['no such user', 'verify credentials and try again or signup']
-          }
-        end
-
         session[:current_user_id] = user.id
         puts('*******************1-session[user]: ', session[:current_user_id])
         # Access_token is used to authenticate request made from the rails application to the google server
@@ -33,6 +20,17 @@ class SessionsController < ApplicationController
         user.google_refresh_token = refresh_token if refresh_token.present?
         user.save
         puts('*******************2-session[user]: ', session[:current_user_id]) 
-        redirect_to root_path
+        if user 
+          render json: {
+            logged_in: true,
+            user: user
+          }
+        else
+          render json: { 
+            status: 401,
+            errors: ['no such user', 'verify credentials and try again or signup']
+          }
+        end
+        #redirect_to root_path
   end
 end
