@@ -1,5 +1,5 @@
 #Rails.application.config.session_store :cookie_store, key: '_remindererapi', SameSite: 'None'
-Rails.application.config.session_store :cookie_store, key: '_remindererapi', SameSite: 'None', :secure
+#Rails.application.config.session_store :cookie_store, key: '_remindererapi', SameSite: 'None', :secure
 
 
 # Rails.application.config.action_dispatch.default_headers = {
