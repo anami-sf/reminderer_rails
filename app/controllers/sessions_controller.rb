@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         user.google_refresh_token = refresh_token if refresh_token.present?
         user.save
         puts('*******************2-session[user]: ', session[:current_user_id]) 
-        # redirect_to root_path
+        redirect_to root_path
         # if user 
         #   render json: {
         #     logged_in: true,
