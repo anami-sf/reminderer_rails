@@ -5,6 +5,8 @@ class DashboardController < ApplicationController
   def index
     @user = User.find_by(id: session[:current_user_id]) 
     puts( '****************jsonuser: ', json: @user)
-    render json: @user
+    render json: {
+      user: @user
+    }
   end
 end
