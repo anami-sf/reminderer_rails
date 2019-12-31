@@ -2,6 +2,7 @@
 class SessionsController < ApplicationController
 
   skip_before_action :authorized, only: [ :googleAuth ]
+  after_action :add_headers
 
   def googleAuth
         # Get access tokens from the google server
@@ -20,7 +21,7 @@ class SessionsController < ApplicationController
         user.google_refresh_token = refresh_token if refresh_token.present?
         user.save
         puts('*******************2-session[user]: ', session[:current_user_id]) 
-        redirect_to root_path
+        redirect_to '/dashboard/index'
         # if user 
         #   render json: {
         #     logged_in: true,
@@ -32,5 +33,10 @@ class SessionsController < ApplicationController
         #     errors: ['no such user', 'verify credentials and try again or signup']
         #   }
         # end
+  end
+
+  def add_headers
+    #response.headers['test-controller-header'] = 'test-controller-header-value'
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3001'
   end
 end

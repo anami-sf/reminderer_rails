@@ -2,7 +2,9 @@ require 'twilio-ruby'
 
 class NotificationsController < ApplicationController  
     
+    skip_before_action :authorized, only: [ :notify ]
     skip_before_action :verify_authenticity_token
+    # after_action :add_headers
 
     def notify
         @client = Twilio::REST::Client.new(
@@ -18,9 +20,15 @@ class NotificationsController < ApplicationController
         message = @client.messages.create(
         from: '+14152134974',
         to: '+14153351196',
-        body: 'Sending this message from my new twilio app. If you got it, please reply. - your gf',
-        #media_url: 'http://linode.rabasa.com/yoda.gif'
+        body: 'This is my favorite twilio message',
+        media_url: 'http://linode.rabasa.com/yoda.gif'
         )
         #render plain: message.status
     end
+
+    # def add_headers
+    #     #response.headers['test-controller-header'] = 'test-controller-header-value'
+    #     response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3001'
+    # end
+
 end
