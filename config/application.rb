@@ -10,7 +10,7 @@ module Remindererapi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    config.force_ssl = true
+    # config.force_ssl = true
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -19,11 +19,11 @@ module Remindererapi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://reminderer-app.herokuapp.com/'
+        origins '*'
         resource '*', 
           headers: :any, 
           methods: [:get, :post, :put, :patch, :delete, :options, :head],
-          credentials: true
+          credentials: false
       end
     end
   end

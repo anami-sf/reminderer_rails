@@ -1,12 +1,6 @@
-#Rails.application.config.session_store :cookie_store, SameSite: 'None'
-# Rails.application.config.session_store :cookie_store, same_site: :lax
+#Rails.application.config.session_store :cookie_store, key: '_remindererapi', SameSite: 'None'
+# Rails.application.config.session_store :cookie_store, key: '_remindererapi', same_site: :lax
 #:secure
-
-if Rails.env === 'production' 
-    Rails.application.config.session_store :cookie_store, key: '_remindererapi', domain: 'your-frontend-domain'
-else
-    Rails.application.config.session_store :cookie_store, key: '_remindererapi' 
-end
 
 
 # Rails.application.config.action_dispatch.default_headers = {
